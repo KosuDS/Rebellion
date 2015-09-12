@@ -1,15 +1,15 @@
 package com.dobromir.rebellion.map;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Mesh;
+import com.badlogic.gdx.graphics.VertexAttribute;
+import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.dobromir.rebellion.Game;
-import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.Maps;
-import com.dobromir.rebellion.elements.Player;
+import com.dobromir.rebellion.map.objects.Player;
 import com.dobromir.rebellion.sprites.GameSprite;
 
 import java.util.HashMap;
@@ -23,6 +23,8 @@ public class Map {
 
     private String cameraClumping;
     private boolean drawShape;
+    private boolean drawObjects;
+    private boolean drawTiles;
 
     private HashMap<String, GameSprite> objects;
     public Player player;
@@ -32,7 +34,9 @@ public class Map {
 
         tiledMap = Maps.getTiledMap(game.gameData.mapName);
         mapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+
         shapeRenderer = new ShapeRenderer();
+        shapeRenderer.setColor(Color.BLUE);
 
         objects = new HashMap<>();
 
@@ -41,6 +45,8 @@ public class Map {
 
         cameraClumping = "Player";
         drawShape = true;
+        drawObjects = true;
+        drawTiles = true;
     }
 
     public void update(float dt) {
@@ -55,16 +61,25 @@ public class Map {
     }
 
     public void draw() {
+        if(drawTiles) {
+            mapRenderer.setView(game.camera);
+            mapRenderer.render();
+        }
 
-        mapRenderer.setView(game.camera);
-        mapRenderer.render();
+        if(drawObjects) {
+            game.spriteBatch.begin();
+            for (GameSprite object : objects.values()) {
+                object.draw();
+            }
+            game.spriteBatch.end();
+        }
 
+//        TODO: Zrobic siatke na wszystkie obiekty
         if(drawShape) {
-            shapeRenderer.setColor(Color.BLUE);
-            shapeRenderer.setProjectionMatrix(game.camera.combined);
-
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            shapeRenderer.rect(player.getRotationMinX(), player.getRotationMinY(), player.getRotationWidth(), player.getRotationHeight());
+            shapeRenderer.setProjectionMatrix(game.camera.combined);
+            //shapeRenderer.rect(player.getRotationMinX(), player.getRotationMinY(), player.getRotationWidth(), player.getRotationHeight());
+            shapeRenderer.polygon(player.getVertices());
             shapeRenderer.end();
         }
     }

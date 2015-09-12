@@ -1,8 +1,9 @@
-package com.dobromir.rebellion.elements;
+package com.dobromir.rebellion.map.objects;
 
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.constantly.KeysConfig;
@@ -25,7 +26,7 @@ public class Player extends MovingSprite {
 		width = sprite.getWidth();
 		height = sprite.getHeight();
 
-		game.screen.elements.add(this);
+//        TODO: Zrobic 3 stopniowa animacje
 	}
 	
 	public void shoot() {
@@ -57,6 +58,8 @@ public class Player extends MovingSprite {
         } if(Gdx.input.isKeyPressed(KeysConfig.MOVE_RIGHT)){
             moveRight();
         }
+
+        if(Gdx.input.isKeyJustPressed(KeysConfig.SHOOT)) shoot();
 	}
 
 	@Override
@@ -74,4 +77,9 @@ public class Player extends MovingSprite {
             input();
         }
 	}
+
+    public float[] getVertices() {
+        float[] vertices = sprite.getVertices();
+        return new float[] {vertices[Batch.X1], vertices[Batch.Y1], vertices[Batch.X2], vertices[Batch.Y2], vertices[Batch.X3], vertices[Batch.Y3], vertices[Batch.X4], vertices[Batch.Y4], vertices[Batch.X1], vertices[Batch.Y1]};
+    }
 }

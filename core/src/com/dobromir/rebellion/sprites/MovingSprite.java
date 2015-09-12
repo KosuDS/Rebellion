@@ -43,6 +43,7 @@ public class MovingSprite extends GameSprite {
 		this.speed = speed;
 		
 		collisionLayer = (TiledMapTileLayer) Maps.getTiledMap(game.gameData.mapName).getLayers().get(0);
+//        TODO: Zrobic lepsze kolizje... te ssa pale
 	}
 	
 	public MovingSprite(String skinName, Game game, float x, float y, float speed) {
@@ -51,6 +52,7 @@ public class MovingSprite extends GameSprite {
 	}
 	
 	public void calculateRotationSize() { // Oblicza nowa wysokosc i szerokosc po rotacji
+//        TODO: Skorzystac z Sprite.getVertices()
 		float angle = -rotation * MathUtils.degreesToRadians;
 		
 		float centerX = x + (width / 2);

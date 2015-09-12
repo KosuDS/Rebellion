@@ -8,7 +8,7 @@ import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.map.Map;
 
 import com.dobromir.rebellion.sprites.GameSprite;
-import com.dobromir.rebellion.ui.InformationPanel;
+import com.dobromir.rebellion.ui.elements.InformationPanel;
 
 
 public class GameScreen extends Screen{

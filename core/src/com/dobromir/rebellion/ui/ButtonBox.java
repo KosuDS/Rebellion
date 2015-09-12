@@ -39,6 +39,7 @@ public class ButtonBox extends GameSprite{
         
         stage.addActor(btn);
         buttons.put(name, btn);
+//		TODO: To musi sie dziac automatycznie, segregowanie, ukaladanie itp.
 	}
 	
 	@Override

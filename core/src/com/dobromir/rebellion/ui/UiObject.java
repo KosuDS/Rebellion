@@ -7,6 +7,7 @@ public class UiObject extends GameSprite{
 
     public UiObject(Game game, float x, float y) {
         super(game, x, y);
+//      TODO: To bedzie odpowiednik chwilowych elements
     }
 
     @Override
