@@ -53,6 +53,7 @@ public class MovingSprite extends GameSprite {
 	
 	public void calculateRotationSize() { // Oblicza nowa wysokosc i szerokosc po rotacji
 //        TODO: Skorzystac z Sprite.getVertices()
+//        TODO: Zastanowic sie nad sensem MovingSprite
 		float angle = -rotation * MathUtils.degreesToRadians;
 		
 		float centerX = x + (width / 2);
