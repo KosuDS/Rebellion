@@ -8,4 +8,9 @@ public class UiObject extends GameSprite{
     public UiObject(Game game, float x, float y) {
         super(game, x, y);
     }
+
+    @Override
+    public void draw() {
+        super.draw();
+    }
 }
