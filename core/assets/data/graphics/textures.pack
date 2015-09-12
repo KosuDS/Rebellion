@@ -1,0 +1,26 @@
+
+textures.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+logo
+  rotate: false
+  xy: 1, 1
+  size: 902, 120
+  orig: 902, 120
+  offset: 0, 0
+  index: -1
+player
+  rotate: false
+  xy: 905, 80
+  size: 58, 41
+  orig: 58, 41
+  offset: 0, 0
+  index: -1
+testPlayer
+  rotate: false
+  xy: 905, 46
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1

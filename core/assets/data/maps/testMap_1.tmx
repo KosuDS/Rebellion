@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="60" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="tileset1" tilewidth="32" tileheight="32" tilecount="1024">
+  <image source="tileset1.png" width="1024" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collsion" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="264">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="265">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="266">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="267">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="268">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="298">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="299">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="300">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="332">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="333">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="392">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="393">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="394">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="395">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="424">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="426">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="427">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="513">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="514">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="515">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="546">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="547">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="576">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1025" name="tileset2" tilewidth="32" tileheight="32" tilecount="1024">
+  <image source="tileset2.png" width="1024" height="1024"/>
+  <tile id="71">
+   <properties>
+    <property name="colision" value="ture"/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="128">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="160">
+   <properties>
+    <property name="colision" value="ture"/>
+   </properties>
+  </tile>
+  <tile id="161">
+   <properties>
+    <property name="colisioon" value="true"/>
+   </properties>
+  </tile>
+  <tile id="800">
+   <properties>
+    <property name="colision" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="2049" name="tileset2" tilewidth="32" tileheight="32" tilecount="1024">
+  <image source="tileset3.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="background" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2zsKgDAQANH4uYjoxTyKjTf0PipY2CUQkDg7xXRb5JElXYaUUh+k8aq72oLU6UWnl51ednrZ6WWnl51ednrZ6WWnl51ednrZ6WWnl51ednrZfeXdn/Tq1atXr169evXq1atXr169elvyrj/2lvxzIN3vkWkK5j1eZ65Jb5ve2n1upYjeOeXf56Vg5g/djhNGNKra
+  </data>
+ </layer>
+ <layer name="rocks" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt1sEJwDAIBdAcCt2km2WXdOtSeskADUF9D7z7CWpaAwAAAAAAAAAAAFYa51dVVMoa1V3wjbJnvo7dHZBdlN3+16xHyUtdfXcDAJP3/mb/b0f2AH8KBis=
+  </data>
+ </layer>
+ <layer name="buildings" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENgDAMBMAEsUpGicT+E4FYIA3Exd9J7v9ttwYAAAAAAAAAAAAAAPC/66xOsM985lhM0DpevTrAZiPswDOsb9o/p/Ud1QE+dAOhBgFA
+  </data>
+ </layer>
+ <layer name="people" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt1LENgDAQBMEPiKAQqiCkT5dJ6BYs9NZb1kx8wUYXAQAAAAAAAAAAAAAArOo7qwv44x3YHNMrIF+7qgvW8/jp7dzVAYk6wqQCZQ==
+  </data>
+ </layer>
+ <layer name="things" width="60" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt08EJAkEMheHsuk4ES7Ih+9BKbMAaVFAPijWsglqGDzIXQY86OP4fPEICA5NDzAAAAAAAAAAAAAAAAFDaKpmtlU2Kfqu6U/ap7L8+pddeZ+WS97uq3pR7pfs2btYqA48+qboy8rL/AgAAAAB8R989921ObaZ5z2YYdemRmebz7v27Wpw8AvyixYsbnYzNDpof/+B+a/YA2g4Skw==
+  </data>
+ </layer>
+</map>
