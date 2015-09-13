@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
+import com.dobromir.rebellion.map.objects.NewPlayer;
 import com.dobromir.rebellion.map.objects.Player;
 import com.dobromir.rebellion.sprites.GameSprite;
 
@@ -27,7 +28,7 @@ public class Map {
     private boolean drawTiles;
 
     private HashMap<String, GameSprite> objects;
-    public Player player;
+    public NewPlayer player;
 
     public Map(Game game) {
         this.game = game;
@@ -40,8 +41,8 @@ public class Map {
 
         objects = new HashMap<>();
 
-        objects.put("Player", new Player(game, 110, 110));
-        player = (Player) getObjects().get("Player");
+        objects.put("Player", new NewPlayer(game, 110, 110, 100));
+        player = (NewPlayer) getObjects().get("Player");
 
         cameraClumping = "Player";
         drawShape = true;
@@ -79,7 +80,7 @@ public class Map {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             shapeRenderer.setProjectionMatrix(game.camera.combined);
             //shapeRenderer.rect(player.getRotationMinX(), player.getRotationMinY(), player.getRotationWidth(), player.getRotationHeight());
-            shapeRenderer.polygon(player.getVertices());
+            //shapeRenderer.polygon(player.getVertices());
             shapeRenderer.end();
         }
     }

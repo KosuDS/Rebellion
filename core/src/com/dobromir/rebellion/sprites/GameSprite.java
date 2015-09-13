@@ -7,7 +7,7 @@ import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.ImageCache;
 
 public class GameSprite{
-	
+
 	public boolean active;
 	public boolean visible;
 	public float x = 0;
@@ -29,28 +29,31 @@ public class GameSprite{
 		texture = null;
 	}
 	
-	public GameSprite (String skinName, Game game, float x, float y) {
+	public GameSprite (String textureName, Game game, float x, float y) {
 		this.game = game;
 		active = true;
 		visible = true;
 		this.x = x;
 		this.y = y;
-		setTexture(skinName);
+		setTexture(textureName);
 	}
 	
 	public boolean isVisible() {
 		return visible;
 	}
 
-	public void setSkin (String skinName, int skinIndex) {
-		setSkin (ImageCache.getFrame(skinName, skinIndex));
+	public void setTexture (String textureName, int textureIndex) {
+		setTexture(ImageCache.getFrame(textureName, textureIndex));
 	}
-	public void setTexture(String skinName) {
-		setSkin (ImageCache.getTexture(skinName));
+
+	public void setTexture(String textureName) {
+		System.out.println(textureName);
+		setTexture(ImageCache.getTexture(textureName));
 	}
 	
-	public void setSkin (TextureRegion texture) {
+	public void setTexture(TextureRegion texture) {
 		this.texture = texture;
+
 		width = this.texture.getRegionWidth();
 		height = this.texture.getRegionHeight();
 		x = x - this.texture.getRegionWidth() * 0.5f;
@@ -74,7 +77,7 @@ public class GameSprite{
 	}
 	
 	public Rectangle bounds () {
-		return new Rectangle(x + width * 0.2f, y + height * 0.2f, width * 0.8f, height * 0.8f);
+		return new Rectangle(x , y, width, height);
 	}
 	
 	public void update (float dt) {}

@@ -3,24 +3,32 @@ package com.dobromir.rebellion.map.objects;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.ImageCache;
 import com.dobromir.rebellion.data.Sounds;
-import com.dobromir.rebellion.sprites.MovingSprite;
+import com.dobromir.rebellion.sprites.MovingSprite_exp;
 
 
-public class Player extends MovingSprite {
+public class Player extends MovingSprite_exp {
 
 	private boolean dead = false;
 	
 	private Sprite sprite;
 
+	private TextureRegion leftSidePlayer;
+	private TextureRegion rightSidePlayer;
+	private TextureRegion middleSidePlayer;
+
 	public Player(Game game, float x, float y) {
 		super(game, x, y, 100);
 		texture = null;
+
+		//leftSidePlayer = ImageCache.getTexture("left_side_player");
+		//rightSidePlayer = ImageCache.getTexture("right_side_player");
+		//middleSidePlayer = ImageCache.getTexture("middle_side_player");
 
 		sprite = new Sprite(ImageCache.getTexture("player"));
 		width = sprite.getWidth();
@@ -77,9 +85,4 @@ public class Player extends MovingSprite {
             input();
         }
 	}
-
-    public float[] getVertices() {
-        float[] vertices = sprite.getVertices();
-        return new float[] {vertices[Batch.X1], vertices[Batch.Y1], vertices[Batch.X2], vertices[Batch.Y2], vertices[Batch.X3], vertices[Batch.Y3], vertices[Batch.X4], vertices[Batch.Y4], vertices[Batch.X1], vertices[Batch.Y1]};
-    }
 }
