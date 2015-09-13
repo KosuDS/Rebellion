@@ -12,7 +12,4 @@ public class Enemy extends GameSprite {
         super(game, x, y);
     }
 
-    public Enemy(String skinName, Game game, float x, float y) {
-        super(skinName, game, x, y);
-    }
 }
