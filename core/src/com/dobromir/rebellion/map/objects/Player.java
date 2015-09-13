@@ -30,7 +30,7 @@ public class Player extends MovingSprite_exp {
 		//rightSidePlayer = ImageCache.getTexture("right_side_player");
 		//middleSidePlayer = ImageCache.getTexture("middle_side_player");
 
-		sprite = new Sprite(ImageCache.getTexture("player"));
+		sprite = new Sprite(ImageCache.getTexture("player_front"));
 		width = sprite.getWidth();
 		height = sprite.getHeight();
 

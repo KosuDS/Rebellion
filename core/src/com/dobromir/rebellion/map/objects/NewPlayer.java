@@ -15,7 +15,7 @@ public class NewPlayer extends MovingSprite{
     private boolean dead = false;
 
     public NewPlayer(Game game, float x, float y, float speed) {
-        super("player", game, x, y, speed);
+        super("player_front", game, x, y, speed);
     }
 
     public void shoot() {
