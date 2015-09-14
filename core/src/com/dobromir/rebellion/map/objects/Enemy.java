@@ -11,5 +11,5 @@ public class Enemy extends GameSprite {
     public Enemy(Game game, float x, float y) {
         super(game, x, y);
     }
-
+//TODO:zrobic przeciwnika
 }
