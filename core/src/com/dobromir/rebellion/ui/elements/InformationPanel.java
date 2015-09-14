@@ -24,7 +24,7 @@ public class InformationPanel extends GameSprite{
 
 	private BitmapFont font;
 
-	private String textToDraw;
+	private String textToDraw = "";
 	
 	public InformationPanel(Game game, float x, float y) {
 		super(game, x, y);

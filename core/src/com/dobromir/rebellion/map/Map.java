@@ -58,7 +58,7 @@ public class Map {
         }
     }
 
-    public void draw() {
+    public void draw(float dt) {
         if(drawTiles) {
             mapRenderer.setView(game.camera);
             mapRenderer.render();
@@ -71,6 +71,8 @@ public class Map {
             }
             game.spriteBatch.end();
         }
+//        TODO: Naprawic 'skakanie' playera
+        update(dt);
 
 //        TODO: Zrobic siatke na wszystkie obiekty
         if(drawShape) {
