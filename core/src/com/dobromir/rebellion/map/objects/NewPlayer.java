@@ -9,6 +9,7 @@ import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.ImageCache;
 import com.dobromir.rebellion.data.Sounds;
 import com.dobromir.rebellion.sprites.MovingSprite;
+import com.dobromir.rebellion.utils.io.Console;
 
 public class NewPlayer extends MovingSprite{
 
@@ -52,10 +53,8 @@ public class NewPlayer extends MovingSprite{
             super.update(dt);
 
 //            TODO: Usunac stara klase MovinSprite a na jej miejsce wstawic to nowe cudo z nowymi kolizjami z poligonami i takimi bajerami + RotationSprite - dzis jest juz na to za pozno...
-            float dirX = (Gdx.input.getX() - game.screenWidth / 2) + x - width / 2;
-            float dirY = (Gdx.input.getY() - game.screenHeight / 2) + y + height / 2;
 
-            setRotation(dirX, dirY);
+            setRotation(game.camera.getPositionMouseWithCamera().x, game.camera.getPositionMouseWithCamera().y);
             setDirectionMove(rotation);
             input();
         }

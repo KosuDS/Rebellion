@@ -2,6 +2,7 @@ package com.dobromir.rebellion.sprites;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.dobromir.rebellion.Game;
+import com.dobromir.rebellion.utils.io.Console;
 
 public class MovingSprite extends PhysicSprite {
 
@@ -52,7 +53,7 @@ public class MovingSprite extends PhysicSprite {
     }
 
     public void setRotation(float dirX, float dirY) {
-        rotation = -MathUtils.radiansToDegrees * MathUtils.atan2(dirY - y , dirX - x);
+        rotation = MathUtils.radiansToDegrees * MathUtils.atan2(dirY - y , dirX - x);
     }
 
     public void setDirectionMove(float rotation) {
