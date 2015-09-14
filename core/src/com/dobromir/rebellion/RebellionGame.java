@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.dobromir.rebellion.data.*;
+import com.dobromir.rebellion.utils.GlobalCamera;
 
 import java.awt.*;
 
 public class RebellionGame extends Game{
-
 
 	@Override
 	public void create() {
@@ -20,7 +20,7 @@ public class RebellionGame extends Game{
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 
-		camera = new OrthographicCamera(screenWidth, screenHeight);
+		camera = new GlobalCamera(screenWidth, screenHeight);
 		camera.position.set(screenWidth * 0.5f, screenHeight * 0.5f, 0);
 
 		Sounds.load();

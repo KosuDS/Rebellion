@@ -47,7 +47,6 @@ public class GameSprite{
 	}
 
 	public void setTexture(String textureName) {
-		System.out.println(textureName);
 		setTexture(ImageCache.getTexture(textureName));
 	}
 	
@@ -81,7 +80,11 @@ public class GameSprite{
 	}
 	
 	public void update (float dt) {}
-	public void reset () {};
+
+	public void reset () {
+		x = 0;
+		y = 0;
+	}
 	
 	public void draw () {
 		game.spriteBatch.draw(texture, x, y);
