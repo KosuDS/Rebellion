@@ -49,16 +49,14 @@ public class NewPlayer extends MovingSprite{
     @Override
     public void update(float dt) {
         if(active) {
+            super.update(dt);
+
 //            TODO: Usunac stara klase MovinSprite a na jej miejsce wstawic to nowe cudo z nowymi kolizjami z poligonami i takimi bajerami + RotationSprite - dzis jest juz na to za pozno...
             float dirX = (Gdx.input.getX() - game.screenWidth / 2) + x - width / 2;
             float dirY = (Gdx.input.getY() - game.screenHeight / 2) + y + height / 2;
 
-            rotation = -MathUtils.radiansToDegrees * MathUtils.atan2(dirY - y , dirX - x);
-
-            float rotationVelocityX = (float) (Math.cos(rotation * MathUtils.degreesToRadians));
-            float rotationVelocityY = (float) (Math.sin(rotation * MathUtils.degreesToRadians));
-
-            setDirectionMove(rotationVelocityX, rotationVelocityY, dt);
+            setRotation(dirX, dirY);
+            setDirectionMove(rotation);
             input();
         }
     }
