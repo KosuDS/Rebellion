@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
 import com.dobromir.rebellion.map.objects.NewPlayer;
@@ -51,6 +52,7 @@ public class Map {
     }
 
     public void update(float dt) {
+
         if(!cameraClumping.equals("")) {
             GameSprite object = objects.get(cameraClumping);
             game.camera.position.set(object.x, object.y, 0);
