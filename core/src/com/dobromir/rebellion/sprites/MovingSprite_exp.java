@@ -103,28 +103,28 @@ public class MovingSprite_exp extends GameSprite {
 	public void chceckCollision() {
 		float oldX = getX(), oldY = getY();
 		boolean collisionX = false, collisionY = false;
-		
+
 		setX(getX() + velocityX);
-		
+
 		if(velocityX < 0){
 			collisionX = collidesLeft();
 		}else if(velocityX > 0){
 			collisionX = collidesRight();
 		}
-		
+
 		if(collisionX) {
 			setX(oldX);
 			velocityX = 0;
 		}
-		
+
 		setY(getY() + velocityY);
-		
+
 		if(velocityY < 0){
 			collisionY = collidesBottom();
 		}else if(velocityY > 0){
 			collisionY = collidesTop();
 		}
-		
+
 		if(collisionY) {
 			setY(oldY);
 			velocityY = 0;
