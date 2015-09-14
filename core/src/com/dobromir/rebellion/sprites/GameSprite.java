@@ -55,8 +55,6 @@ public class GameSprite{
 
 		width = this.texture.getRegionWidth();
 		height = this.texture.getRegionHeight();
-		x = x - this.texture.getRegionWidth() * 0.5f;
-		y = y - this.texture.getRegionHeight() * 0.5f;
 	}
 	
 	public float right () {

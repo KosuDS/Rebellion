@@ -1,16 +1,11 @@
 package com.dobromir.rebellion.map;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Mesh;
-import com.badlogic.gdx.graphics.VertexAttribute;
-import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
-import com.dobromir.rebellion.map.objects.NewPlayer;
 import com.dobromir.rebellion.map.objects.Player;
 import com.dobromir.rebellion.sprites.GameSprite;
 
@@ -29,7 +24,7 @@ public class Map {
     private boolean drawTiles;
 
     private HashMap<String, GameSprite> objects;
-    public NewPlayer player;
+    public Player player;
 
     public Map(Game game) {
         this.game = game;
@@ -42,8 +37,8 @@ public class Map {
 
         objects = new HashMap<>();
 
-        objects.put("Player", new NewPlayer(game, 110, 110, 100));
-        player = (NewPlayer) getObjects().get("Player");
+        objects.put("Player", new Player(game, 110, 110, 100));
+        player = (Player) getObjects().get("Player");
 
         cameraClumping = "Player";
         drawShape = true;
