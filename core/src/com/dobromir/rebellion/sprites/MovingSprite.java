@@ -98,6 +98,8 @@ public class MovingSprite extends GameSprite {
         if(collisionY) {
             directionMove[1] = 0;
         }
+
+//        TODO: Okazalo sie ze polygony sa zamkniete wiec nie trzeba powtarzac pierwszego x, y
     }
 
     private boolean isCellBlocked(float x, float y) {
