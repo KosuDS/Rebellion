@@ -69,6 +69,6 @@ public class Player extends MovingSprite{
     @Override
     public void draw() {
         super.draw();
-        input();
+        if(active) input();
     }
 }

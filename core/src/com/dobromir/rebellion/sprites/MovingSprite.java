@@ -11,16 +11,21 @@ public class MovingSprite extends GameSprite {
 
     private float speed;
     private float dtSpeed;
-    private float[] velocityMove;
-    private float[] directionMove;
+    private float[] velocityMove = new float[] {0, 0};
+    private float[] directionMove = new float[] {0, 0};
+
+    public MovingSprite(Game game, float x, float y, float speed) {
+        super(game, x, y);
+        collisionLayer = (TiledMapTileLayer) Maps.getTiledMap(game.gameData.mapName).getLayers().get(0);
+
+        this.speed = speed;
+    }
 
     public MovingSprite(String textureName, Game game, float x, float y, float speed) {
         super(textureName, game, x, y);
         collisionLayer = (TiledMapTileLayer) Maps.getTiledMap(game.gameData.mapName).getLayers().get(0);
 
         this.speed = speed;
-        this.directionMove = new float[] {0, 0};
-        this.velocityMove = new float[] {0, 0};
     }
 
     @Override
