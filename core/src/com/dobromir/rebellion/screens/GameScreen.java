@@ -77,7 +77,7 @@ public class GameScreen extends Screen{
 
 		if(Gdx.input.isKeyJustPressed(KeysConfig.CHANGE_CAMERA)) {
             map.setCameraClumping(map.getCameraClumping().equals("Player") ? "" : "Player");
-            map.player.setActive(!map.player.active);
+            map.setActive(!map.isActive());
         }
 		if(Gdx.input.isKeyJustPressed(KeysConfig.DRAW_SHAPE)) map.setDrawShape(!map.isDrawShape());
 

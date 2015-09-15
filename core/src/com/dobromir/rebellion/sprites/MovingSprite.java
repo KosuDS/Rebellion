@@ -2,8 +2,10 @@ package com.dobromir.rebellion.sprites;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Polygon;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
+import com.dobromir.rebellion.utils.io.Console;
 
 public class MovingSprite extends GameSprite {
 
@@ -13,6 +15,8 @@ public class MovingSprite extends GameSprite {
     private float dtSpeed;
     private float[] velocityMove = new float[] {0, 0};
     private float[] directionMove = new float[] {0, 0};
+
+    public Polygon cellPolygon;
 
     public MovingSprite(Game game, float x, float y, float speed) {
         super(game, x, y);
@@ -103,21 +107,21 @@ public class MovingSprite extends GameSprite {
 
     public boolean collidesRight() {
         for(float step = 0; step < height; step += collisionLayer.getTileHeight() / 2)
-            if(isCellBlocked(x + width, y + step))
+            if(isCellBlocked(x + width + velocityMove[0], y + step + velocityMove[1]))
                 return true;
         return false;
     }
 
     public boolean collidesLeft() {
         for(float step = 0; step < height; step += collisionLayer.getTileHeight() / 2)
-            if(isCellBlocked(x, y + step))
+            if(isCellBlocked(x + velocityMove[0], y + step + velocityMove[1]))
                 return true;
         return false;
     }
 
     public boolean collidesTop() {
         for(float step = 0; step < width; step += collisionLayer.getTileWidth() / 2)
-            if(isCellBlocked(x + step, y + height))
+            if(isCellBlocked(x + step + velocityMove[0], y + height + velocityMove[1]))
                 return true;
         return false;
 
@@ -125,7 +129,7 @@ public class MovingSprite extends GameSprite {
 
     public boolean collidesBottom() {
         for(float step = 0; step < width; step += collisionLayer.getTileWidth() / 2)
-            if(isCellBlocked(x + step, y))
+            if(isCellBlocked(x + step + velocityMove[0], y + velocityMove[1]))
                 return true;
         return false;
     }
