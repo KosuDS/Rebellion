@@ -61,9 +61,14 @@ public class Player extends MovingSprite{
                 setTexture(playerRightTexture);
             }
 
-            input();
             setRotation(game.camera.getPositionMouseWithCamera().x, game.camera.getPositionMouseWithCamera().y);
             setDirectionMove(rotation);
         }
+    }
+
+    @Override
+    public void draw() {
+        super.draw();
+        input();
     }
 }

@@ -4,7 +4,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
-import com.dobromir.rebellion.utils.io.Console;
 
 public class MovingSprite extends PhysicSprite {
 
@@ -38,7 +37,7 @@ public class MovingSprite extends PhysicSprite {
 
     public void moveForward() {
         setVelocity();
-        chceckCollision();
+        checkCollision();
 
         x += directionMove[0] * dtSpeed;
         y += directionMove[1] * dtSpeed;
@@ -46,7 +45,7 @@ public class MovingSprite extends PhysicSprite {
 
     public void moveBack() {
         setVelocity();
-        chceckCollision();
+        checkCollision();
 
         x -= directionMove[0] * dtSpeed;
         y -= directionMove[1] * dtSpeed;
@@ -54,7 +53,7 @@ public class MovingSprite extends PhysicSprite {
 
     public void moveLeft() {
         setVelocity();
-        chceckCollision();
+        checkCollision();
 
         x -= directionMove[1] * dtSpeed;
         y += directionMove[0] * dtSpeed;
@@ -62,17 +61,14 @@ public class MovingSprite extends PhysicSprite {
 
     public void moveRight() {
         setVelocity();
-        chceckCollision();
+        checkCollision();
 
         x += directionMove[1] * dtSpeed;
         y -= directionMove[0] * dtSpeed;
     }
 
-    public void chceckCollision() {
-        float oldX = x, oldY = y;
+    public void checkCollision() {
         boolean collisionX = false, collisionY = false;
-
-        x = x + velocityMove[0];
 
         if(velocityMove[0] < 0){
             collisionX = collidesLeft();
@@ -81,11 +77,8 @@ public class MovingSprite extends PhysicSprite {
         }
 
         if(collisionX) {
-            x = oldX;
             directionMove[0] = 0;
         }
-
-        y = y + velocityMove[1];
 
         if(velocityMove[1] < 0){
             collisionY = collidesBottom();
@@ -94,7 +87,6 @@ public class MovingSprite extends PhysicSprite {
         }
 
         if(collisionY) {
-            y = oldY;
             directionMove[1] = 0;
         }
     }

@@ -38,19 +38,11 @@ public class GameScreen extends Screen{
 	@Override
 	public void update(float dt) {
 
-		///////////////////////////// UPDATE /////////////////////////////
-		informationPanel.update(dt);
-		informationPanel.setInformation(map.getObjects().get("Player").getX(), map.getObjects().get("Player").getX(), game.camera.position.x, game.camera.position.y, map.getCameraClumping(), map.isDrawShape(), game.gameData.mapName);
-
-		game.camera.update();
-		game.spriteBatch.setProjectionMatrix(game.camera.combined);
-		///////////////////////////// UPDATE /////////////////////////////
-
         ///////////////////////////// RENDERER /////////////////////////////
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        map.draw(dt);
+		map.draw();
 
         game.spriteBatch.enableBlending();
         game.spriteBatch.begin();
@@ -67,6 +59,17 @@ public class GameScreen extends Screen{
 
         game.spriteBatch.end();
 		///////////////////////////// RENDERER /////////////////////////////
+
+
+		///////////////////////////// UPDATE /////////////////////////////
+		informationPanel.update(dt);
+		informationPanel.setInformation(map.getObjects().get("Player").getX(), map.getObjects().get("Player").getX(), game.camera.position.x, game.camera.position.y, map.getCameraClumping(), map.isDrawShape(), game.gameData.mapName);
+
+		map.update(dt);
+
+		game.camera.update();
+		game.spriteBatch.setProjectionMatrix(game.camera.combined);
+		///////////////////////////// UPDATE /////////////////////////////
 
 
         ///////////////////////////// INPUT /////////////////////////////
