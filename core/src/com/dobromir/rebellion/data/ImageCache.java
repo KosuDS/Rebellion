@@ -14,7 +14,7 @@ public class ImageCache {
     public static TextureAtlas atlas;  
       
     public static void load () {  
-        atlas = new TextureAtlas(Gdx.files.internal(PathsConfig.TEXTURES_CONFIG_FILE), Gdx.files.internal( PathsConfig.GRAPHICS_PATH));
+        atlas = new TextureAtlas(Gdx.files.internal(PathsConfig.GRAPHICS_CONFIG_FILE), Gdx.files.internal( PathsConfig.GRAPHICS_PATH));
     }  
       
     public static TextureRegion getTexture (String name) {

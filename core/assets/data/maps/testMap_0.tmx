@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Ground" tilewidth="32" tileheight="32">
+  <tileoffset x="1" y="1"/>
+  <image source="tileset1.png" width="1024" height="1024"/>
+  <tile id="96">
+   <properties>
+    <property name="collision" value=""/>
+   </properties>
+  </tile>
+  <tile id="392">
+   <properties>
+    <property name="collision" value=""/>
+   </properties>
+  </tile>
+  <tile id="393">
+   <properties>
+    <property name="collision" value=""/>
+   </properties>
+  </tile>
+  <tile id="394">
+   <properties>
+    <property name="collision" value=""/>
+   </properties>
+  </tile>
+  <tile id="395">
+   <properties>
+    <property name="collision" value=""/>
+   </properties>
+  </tile>
+  <tile id="426">
+   <properties>
+    <property name="collision" value=""/>
+   </properties>
+  </tile>
+  <tile id="427">
+   <properties>
+    <property name="collision" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt2V0KgzAMB/B41B5nH8dwT+4GXm6FrVBio22aNIXl4Y+YB/mRFAz6WADuk+YZc4tZ4Zi9UBuZF3xts/pW9/29z9p45puhhzU+S+OVz9pY49Occ/hFwidtvLK1+CSNAepsrT4JY62L60vGEbYeHzYGIj02rq9kxBZca31uCteH59zry00S/aPm3NMvyflS8+BE4/xJ9lDbp2Vzn/vc5z73HevUvoR3J0sfvt/RlbvTSc8Xu0p9tvCld39uKFksfCUbldG+fGfSPl8tPrwzWttyn/V3oBqftYXybYv9fwQq75gPDSPrbA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1cENgCAQRNGVcq3B0mzNSDayBz1hSGDE/5K5/8MGzIA5bcs1JdFU29a7/23fCMptmBt3h79YRwegn1SmJplc2+F/gGBX8L6zTLHR+26NgqIxBgBuF38PlPu87TklX+oD0CYDilQeWA==
+  </data>
+ </layer>
+</map>

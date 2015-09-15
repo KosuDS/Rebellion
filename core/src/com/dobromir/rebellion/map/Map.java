@@ -4,10 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Polygon;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
+import com.dobromir.rebellion.map.objects.Enemy;
 import com.dobromir.rebellion.map.objects.Player;
 import com.dobromir.rebellion.sprites.GameSprite;
+import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
 import java.util.HashMap;
 
@@ -25,6 +28,7 @@ public class Map {
 
     private HashMap<String, GameSprite> objects;
     public Player player;
+    public Enemy enemy;
 
     public Map(Game game) {
         this.game = game;
@@ -38,7 +42,10 @@ public class Map {
         objects = new HashMap<>();
 
         objects.put("Player", new Player(game, 110, 110, 100));
+        objects.put("Enemy", new Enemy(game, 210, 210, 100));
+
         player = (Player) getObjects().get("Player");
+        enemy = (Enemy) getObjects().get("Enemy");
 
         cameraClumping = "Player";
         drawShape = true;
@@ -72,12 +79,12 @@ public class Map {
             game.spriteBatch.end();
         }
 
-//        TODO: Zrobic siatke na wszystkie obiekty
         if(drawShape) {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             shapeRenderer.setProjectionMatrix(game.camera.combined);
-            //shapeRenderer.rect(player.getRotationMinX(), player.getRotationMinY(), player.getRotationWidth(), player.getRotationHeight());
-            shapeRenderer.polygon(player.getBody().getVertices());
+            for (GameSprite object : objects.values()){
+                shapeRenderer.polygon(object.getBody().getVertices());
+            }
             shapeRenderer.end();
         }
     }
