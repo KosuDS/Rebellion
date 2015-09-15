@@ -77,7 +77,7 @@ public class Map {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             shapeRenderer.setProjectionMatrix(game.camera.combined);
             //shapeRenderer.rect(player.getRotationMinX(), player.getRotationMinY(), player.getRotationWidth(), player.getRotationHeight());
-            //shapeRenderer.polygon(player.getVertices());
+            shapeRenderer.polygon(player.getBody().getVertices());
             shapeRenderer.end();
         }
     }

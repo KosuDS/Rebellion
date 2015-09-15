@@ -1,9 +1,13 @@
 package com.dobromir.rebellion.sprites;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.dobromir.rebellion.Game;
-
+import com.badlogic.gdx.graphics.g2d.Batch.*;
 import com.dobromir.rebellion.data.ImageCache;
 
 public class GameSprite{
@@ -17,6 +21,7 @@ public class GameSprite{
 	public float rotation = 0;
 	
 	public TextureRegion texture;
+    private Polygon body;
 
 	protected Game game;
 	
@@ -27,6 +32,8 @@ public class GameSprite{
 		active = true;
 		visible = true;
 		texture = null;
+
+        createBody(new float[]{x, y, x + width, y, x + width, y + height, x, y + height, x, y});
 	}
 	
 	public GameSprite (String textureName, Game game, float x, float y) {
@@ -37,6 +44,20 @@ public class GameSprite{
 		this.y = y;
 		setTexture(textureName);
 	}
+
+    public void createBody(Sprite sprite) {
+        float[] spriteVertices = sprite.getVertices();
+
+        createBody(new float[]{spriteVertices[Batch.X1], spriteVertices[Batch.Y1], spriteVertices[Batch.X2], spriteVertices[Batch.Y2], spriteVertices[Batch.X3], spriteVertices[Batch.Y3], spriteVertices[Batch.X4], spriteVertices[Batch.Y4], spriteVertices[Batch.X1], spriteVertices[Batch.Y1]});
+    }
+
+    public void createBody(TextureRegion texture) {
+        createBody(new float[] {x, y, x + texture.getRegionWidth(), y, x + texture.getRegionWidth(), y + texture.getRegionHeight(), x, y + texture.getRegionHeight(), x, y});
+    }
+
+    public void createBody(float[] vertices) {
+        body = new Polygon(vertices);
+    }
 	
 	public boolean isVisible() {
 		return visible;
@@ -55,7 +76,21 @@ public class GameSprite{
 
 		width = this.texture.getRegionWidth();
 		height = this.texture.getRegionHeight();
+
+        createBody(texture);
 	}
+
+    public boolean isCollisionWith(Polygon polygon) {
+        return Intersector.overlapConvexPolygons(polygon, body);
+    }
+
+    public Polygon getBody() {
+        return body;
+    }
+
+    public void setBody(Polygon body) {
+        this.body = body;
+    }
 	
 	public float right () {
 		return x + width;

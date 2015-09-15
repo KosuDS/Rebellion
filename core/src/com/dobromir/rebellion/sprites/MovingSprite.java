@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
 
-public class MovingSprite extends PhysicSprite {
+public class MovingSprite extends GameSprite {
 
     private TiledMapTileLayer collisionLayer;
 
