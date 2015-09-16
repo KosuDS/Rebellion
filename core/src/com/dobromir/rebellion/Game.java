@@ -10,6 +10,9 @@ import com.dobromir.rebellion.screens.Screen;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.dobromir.rebellion.utils.GlobalCamera;
+
+import static com.dobromir.rebellion.utils.Control.fail;
 
 public class Game extends ApplicationAdapter {
 	
@@ -22,7 +25,7 @@ public class Game extends ApplicationAdapter {
       
     public GameData gameData;
     public SpriteBatch spriteBatch;  
-    public OrthographicCamera camera;  
+    public GlobalCamera camera;
     public int screenWidth = 0;  
     public int screenHeight = 0;  
       
@@ -30,7 +33,7 @@ public class Game extends ApplicationAdapter {
       
       
     public void create() {  
-        screens = new HashMap<String, Screen>();  
+        screens = new HashMap<>();
     }  
           
     public void setScreen (String screenClassName) {  
@@ -39,22 +42,23 @@ public class Game extends ApplicationAdapter {
             screenClassName = "com.dobromir.rebellion.screens."+screenClassName;
             Screen newScreen = null;  
               
-            if (screens.containsKey(screenClassName) == false) {  
+            if (!screens.containsKey(screenClassName)) {
                   
                 try {  
                     Class screenClass =  Class.forName(screenClassName);   
                     Constructor constructor = screenClass.getConstructor(Game.class);      
                     newScreen = (Screen) constructor.newInstance(this);  
                     screens.put(screenClassName, newScreen);  
-                } catch ( InvocationTargetException ex ){  
-                    System.err.println( ex + " Screen with Wrong args in Constructor.");  
-                } catch ( NoSuchMethodException ex ){  
-                } catch ( ClassNotFoundException ex ){  
-                	System.err.println( ex + " Screen Class Not Found.");  
-                } catch( InstantiationException ex ){  
-                	System.err.println( ex + " Screen Must be a concrete class.");  
-                } catch( IllegalAccessException ex ){  
-                	System.err.println( ex + " Screen with Wrong number of args.");  
+                } catch ( InvocationTargetException ex ){
+                    fail(ex + " Screen with Wrong args in Constructor.");
+                } catch ( NoSuchMethodException ex ){
+                    fail(ex + " No such method.");
+                } catch ( ClassNotFoundException ex ){
+                    fail(ex + " Screen Class Not Found.");
+                } catch( InstantiationException ex ){
+                    fail(ex + " Screen Must be a concrete class.");
+                } catch( IllegalAccessException ex ){
+                    fail(ex + " Screen with Wrong number of args.");
                 }  
             } else {  
                 newScreen = screens.get(screenClassName);  

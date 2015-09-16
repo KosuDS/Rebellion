@@ -42,7 +42,7 @@ public class MainMenuScreen extends Screen{
                 }
             });
  
-            GameSprite logo = new GameSprite ("logo", game, game.screenWidth * 0.5f,  game.screenHeight * 0.7f);
+            GameSprite logo = new GameSprite ("logo", game, game.screenWidth * 0.15f,  game.screenHeight * 0.7f);
             logo.width = game.screenWidth;
             elements.add(logo); 
         }  

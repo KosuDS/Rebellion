@@ -1,17 +1,18 @@
 package com.dobromir.rebellion.map;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Mesh;
-import com.badlogic.gdx.graphics.VertexAttribute;
-import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Polygon;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
-import com.dobromir.rebellion.map.objects.NewPlayer;
+import com.dobromir.rebellion.map.objects.Enemy;
 import com.dobromir.rebellion.map.objects.Player;
 import com.dobromir.rebellion.sprites.GameSprite;
+import com.dobromir.rebellion.utils.io.Console;
+import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
 import java.util.HashMap;
 
@@ -26,9 +27,9 @@ public class Map {
     private boolean drawShape;
     private boolean drawObjects;
     private boolean drawTiles;
+    private boolean active;
 
     private HashMap<String, GameSprite> objects;
-    public NewPlayer player;
 
     public Map(Game game) {
         this.game = game;
@@ -41,23 +42,44 @@ public class Map {
 
         objects = new HashMap<>();
 
-        objects.put("Player", new NewPlayer(game, 110, 110, 100));
-        player = (NewPlayer) getObjects().get("Player");
+        objects.put("Player", new Player(game, 110, 110, 100));
+        objects.put("Enemy", new Enemy(game, 210, 210, 100));
 
         cameraClumping = "Player";
         drawShape = true;
         drawObjects = true;
         drawTiles = true;
+        active = true;
+    }
+
+    public void checkCollision() {
+
+        if(objects.get("Player").isCollisionWith(objects.get("Enemy").getBody())) {
+            Console.puts("COLLLLLLIDISDSDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        }
+
+//        for (GameSprite object : objects.values()) {
+//            for (GameSprite object2 : objects.values()) {
+//                if(object.isCollisionWith(object2.getBody())) {
+//                    Console.puts("COLLLLLLIDISDSDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+//                }
+//            }
+//        }
     }
 
     public void update(float dt) {
-        if(!cameraClumping.equals("")) {
-            GameSprite object = objects.get(cameraClumping);
-            game.camera.position.set(object.x, object.y, 0);
-        }
 
-        for(GameSprite object : objects.values()) {
-            if(object.active) object.update(dt);
+        if(active){
+            if(!cameraClumping.equals("")) {
+                GameSprite object = objects.get(cameraClumping);
+                game.camera.position.set(object.x, object.y, 0);
+            }
+
+            for(GameSprite object : objects.values()) {
+                if(object.active) object.update(dt);
+            }
+
+            checkCollision();
         }
     }
 
@@ -75,12 +97,12 @@ public class Map {
             game.spriteBatch.end();
         }
 
-//        TODO: Zrobic siatke na wszystkie obiekty
         if(drawShape) {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             shapeRenderer.setProjectionMatrix(game.camera.combined);
-            //shapeRenderer.rect(player.getRotationMinX(), player.getRotationMinY(), player.getRotationWidth(), player.getRotationHeight());
-            //shapeRenderer.polygon(player.getVertices());
+            for (GameSprite object : objects.values()){
+                shapeRenderer.polygon(object.getBody().getVertices());
+            }
             shapeRenderer.end();
         }
     }
@@ -112,5 +134,13 @@ public class Map {
 
     public void setDrawShape(boolean drawShape) {
         this.drawShape = drawShape;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

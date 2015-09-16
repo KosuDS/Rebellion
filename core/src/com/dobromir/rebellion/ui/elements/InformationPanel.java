@@ -24,7 +24,7 @@ public class InformationPanel extends GameSprite{
 
 	private BitmapFont font;
 
-	private String textToDraw;
+	private String textToDraw = "";
 	
 	public InformationPanel(Game game, float x, float y) {
 		super(game, x, y);
@@ -47,9 +47,9 @@ public class InformationPanel extends GameSprite{
 
 	@Override
 	public void draw() {
-		setX(game.camera.position.x - (game.screenWidth / 2) + 20);
-		setY(game.camera.position.y + (game.screenHeight / 2) - 20);
-		
+		x = game.camera.position.x - (game.screenWidth / 2) + 20;
+		y = game.camera.position.y + (game.screenHeight / 2) - 20;
+
 		font.draw(game.spriteBatch, textToDraw, x, y, 700, 10, true);
 	}
 

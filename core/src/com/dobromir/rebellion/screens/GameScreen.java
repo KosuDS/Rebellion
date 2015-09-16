@@ -37,21 +37,12 @@ public class GameScreen extends Screen{
 
 	@Override
 	public void update(float dt) {
-        ///////////////////////////// UPDATE /////////////////////////////
-        map.update(dt);
-
-        informationPanel.update(dt);
-        informationPanel.setInformation(map.getObjects().get("Player").getX(), map.getObjects().get("Player").getX(), game.camera.position.x, game.camera.position.y, map.getCameraClumping(), map.isDrawShape(), game.gameData.mapName);
-
-        game.camera.update();
-        game.spriteBatch.setProjectionMatrix(game.camera.combined);
-
 
         ///////////////////////////// RENDERER /////////////////////////////
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        map.draw();
+		map.draw();
 
         game.spriteBatch.enableBlending();
         game.spriteBatch.begin();
@@ -67,6 +58,18 @@ public class GameScreen extends Screen{
         }
 
         game.spriteBatch.end();
+		///////////////////////////// RENDERER /////////////////////////////
+
+
+		///////////////////////////// UPDATE /////////////////////////////
+		informationPanel.update(dt);
+		informationPanel.setInformation(map.getObjects().get("Player").getX(), map.getObjects().get("Player").getX(), game.camera.position.x, game.camera.position.y, map.getCameraClumping(), map.isDrawShape(), game.gameData.mapName);
+
+		map.update(dt);
+
+		game.camera.update();
+		game.spriteBatch.setProjectionMatrix(game.camera.combined);
+		///////////////////////////// UPDATE /////////////////////////////
 
 
         ///////////////////////////// INPUT /////////////////////////////
@@ -74,7 +77,7 @@ public class GameScreen extends Screen{
 
 		if(Gdx.input.isKeyJustPressed(KeysConfig.CHANGE_CAMERA)) {
             map.setCameraClumping(map.getCameraClumping().equals("Player") ? "" : "Player");
-            map.player.setActive(!map.player.active);
+            map.setActive(!map.isActive());
         }
 		if(Gdx.input.isKeyJustPressed(KeysConfig.DRAW_SHAPE)) map.setDrawShape(!map.isDrawShape());
 
@@ -93,6 +96,7 @@ public class GameScreen extends Screen{
 		if(Gdx.input.isKeyJustPressed(KeysConfig.BACK_MAIN_MENU)) {
 			game.setScreen("MainMenuScreen");
         }
+		///////////////////////////// INPUT /////////////////////////////
 	}
 	
 	@Override
