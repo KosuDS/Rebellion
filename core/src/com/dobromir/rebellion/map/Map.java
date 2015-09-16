@@ -44,6 +44,7 @@ public class Map {
 
         objects.put("Player", new Player(game, 110, 110, 100));
         objects.put("Enemy", new Enemy(game, 210, 210, 100));
+        objects.put("Block", new GameSprite("alarm", game, 0, 0));
 
         cameraClumping = "Player";
         drawShape = true;
@@ -53,18 +54,15 @@ public class Map {
     }
 
     public void checkCollision() {
-
-        if(objects.get("Player").isCollisionWith(objects.get("Enemy").getBody())) {
-            Console.puts("COLLLLLLIDISDSDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        for (GameSprite object : objects.values()) {
+            for (GameSprite object2 : objects.values()) {
+                if(!object.equals(object2) && object.isCollisionWith(object2.getBody())) {
+                    //object.setCollising(true);
+                } else {
+                    //object.setCollising(false);
+                }
+            }
         }
-
-//        for (GameSprite object : objects.values()) {
-//            for (GameSprite object2 : objects.values()) {
-//                if(object.isCollisionWith(object2.getBody())) {
-//                    Console.puts("COLLLLLLIDISDSDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-//                }
-//            }
-//        }
     }
 
     public void update(float dt) {
@@ -80,6 +78,17 @@ public class Map {
             }
 
             checkCollision();
+        }
+//TODO: Zrobic porzadnie e kolizje...
+        objects.get("Block").width = 32;
+        objects.get("Block").height = 32;
+        TiledMapTileLayer collisionLayer = (TiledMapTileLayer) Maps.getTiledMap(game.gameData.mapName).getLayers().get(0);
+        TiledMapTileLayer.Cell cell = collisionLayer.getCell((int) (objects.get("Player").x + 5 / collisionLayer.getTileWidth()), (int) (objects.get("Player").y / collisionLayer.getTileHeight()));
+
+        if(cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey("collision")) {
+            objects.get("Block").x = objects.get("Player").x / collisionLayer.getTileWidth();
+            objects.get("Block").y = objects.get("Player").y / collisionLayer.getTileHeight();
+            Console.puts("ASDASDASD");
         }
     }
 
