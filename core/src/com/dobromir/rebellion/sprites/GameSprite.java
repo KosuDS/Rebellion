@@ -48,11 +48,11 @@ public class GameSprite{
     public void createBody(Sprite sprite) {
         float[] spriteVertices = sprite.getVertices();
 
-        createBody(new float[]{spriteVertices[Batch.X1], spriteVertices[Batch.Y1], spriteVertices[Batch.X2], spriteVertices[Batch.Y2], spriteVertices[Batch.X3], spriteVertices[Batch.Y3], spriteVertices[Batch.X4], spriteVertices[Batch.Y4], spriteVertices[Batch.X1], spriteVertices[Batch.Y1]});
+        createBody(new float[]{spriteVertices[Batch.X1], spriteVertices[Batch.Y1], spriteVertices[Batch.X2], spriteVertices[Batch.Y2], spriteVertices[Batch.X3], spriteVertices[Batch.Y3], spriteVertices[Batch.X4], spriteVertices[Batch.Y4]});
     }
 
     public void createBody(TextureRegion texture) {
-        createBody(new float[] {x, y, x + texture.getRegionWidth(), y, x + texture.getRegionWidth(), y + texture.getRegionHeight(), x, y + texture.getRegionHeight(), x, y});
+        createBody(new float[] {x, y, x + texture.getRegionWidth(), y, x + texture.getRegionWidth(), y + texture.getRegionHeight(), x, y + texture.getRegionHeight()});
     }
 
     public void createBody(float[] vertices) {
