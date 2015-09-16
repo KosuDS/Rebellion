@@ -6,12 +6,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.ImageCache;
+import com.dobromir.rebellion.map.Map;
 import com.dobromir.rebellion.sprites.GameSprite;
 import com.dobromir.rebellion.sprites.MovingSprite;
+
+import java.util.Objects;
 
 public class Enemy extends MovingSprite {
 
     private Sprite sprite;
+
+    private int distance;
 
     public Enemy(Game game, float x, float y, float speed) {
         super(game, x, y, speed);
@@ -25,6 +30,7 @@ public class Enemy extends MovingSprite {
     public void input() {
         if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
             moveForward();
+            System.out.println();
         } if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             moveBack();
         } if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
@@ -47,6 +53,13 @@ public class Enemy extends MovingSprite {
             setDirectionMove(rotation);
 
             createBody(sprite);
+
+            distance = Math.sqrt(Math.pow(Objects.get("Player").getX() - getX(), 2) + Math.pow(Objects.get("Player").getX() - getY(), 2)); // prawie dobrze
+
+            if (distance > 100){
+                moveForward();
+            }
+
         }
     }
 
@@ -55,5 +68,4 @@ public class Enemy extends MovingSprite {
         sprite.draw(game.spriteBatch);
         if(active) input();
     }
-
 }
