@@ -1,20 +1,16 @@
 package com.dobromir.rebellion.map;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Polygon;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
 import com.dobromir.rebellion.map.objects.Enemy;
 import com.dobromir.rebellion.map.objects.Player;
 import com.dobromir.rebellion.sprites.GameSprite;
 import com.dobromir.rebellion.utils.io.Console;
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
-
-import java.util.HashMap;
 
 public class Map {
     protected Game game;
@@ -29,8 +25,6 @@ public class Map {
     private boolean drawTiles;
     private boolean active;
 
-    private HashMap<String, GameSprite> objects;
-
     public Map(Game game) {
         this.game = game;
 
@@ -40,11 +34,9 @@ public class Map {
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setColor(Color.BLUE);
 
-        objects = new HashMap<>();
-
-        objects.put("Player", new Player(game, 110, 110, 200));
-        objects.put("Enemy", new Enemy(game, 210, 210, 100));
-        objects.put("Block", new GameSprite("alarm", game, 0, 0));
+        game.screen.elements.put("Player", new Player(game, 110, 110, 200));
+        game.screen.elements.put("Enemy", new Enemy(game, 210, 210, 100));
+        game.screen.elements.put("Block", new GameSprite("alarm", game, 0, 0));
 
         cameraClumping = "Player";
         drawShape = true;
@@ -54,9 +46,10 @@ public class Map {
     }
 
     public void checkCollision() {
-        for (GameSprite object : objects.values()) {
-            for (GameSprite object2 : objects.values()) {
+        for (GameSprite object : game.screen.elements.values()) {
+            for (GameSprite object2 : game.screen.elements.values()) {
                 if(!object.equals(object2) && object.isCollisionWith(object2.getBody())) {
+                    Console.puts("LOLOLOLssssssssssssssssssssssssssssssssssssssssssss");
 //                    object.setCollision(true);
                 } else {
 //                    object.setCollision(false);
@@ -68,11 +61,11 @@ public class Map {
     public void update(float dt) {
         if(active){
             if(!cameraClumping.equals("")) {
-                GameSprite object = objects.get(cameraClumping);
+                GameSprite object = game.screen.elements.get(cameraClumping);
                 game.camera.position.set(object.x, object.y, 0);
             }
 
-            for(GameSprite object : objects.values()) {
+            for(GameSprite object : game.screen.elements.values()) {
                 if(object.active) object.update(dt);
             }
 
@@ -86,18 +79,10 @@ public class Map {
             mapRenderer.render();
         }
 
-        if(drawObjects) {
-            game.spriteBatch.begin();
-            for (GameSprite object : objects.values()) {
-                object.draw();
-            }
-            game.spriteBatch.end();
-        }
-
         if(drawShape) {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             shapeRenderer.setProjectionMatrix(game.camera.combined);
-            for (GameSprite object : objects.values()){
+            for (GameSprite object : game.screen.elements.values()){
                 shapeRenderer.polygon(object.getBody().getVertices());
             }
             shapeRenderer.end();
@@ -107,14 +92,6 @@ public class Map {
     public void dispose() {
         tiledMap.dispose();
         mapRenderer.dispose();
-    }
-
-    public HashMap<String, GameSprite> getObjects() {
-        return objects;
-    }
-
-    public void setObjects(HashMap<String, GameSprite> objects) {
-        this.objects = objects;
     }
 
     public String getCameraClumping() {

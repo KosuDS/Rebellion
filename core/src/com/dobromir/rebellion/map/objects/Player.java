@@ -1,19 +1,20 @@
 package com.dobromir.rebellion.map.objects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.ImageCache;
 import com.dobromir.rebellion.data.Sounds;
-import com.dobromir.rebellion.sprites.GameSprite;
 import com.dobromir.rebellion.sprites.MovingSprite;
 
-import java.util.HashMap;
 
 public class Player extends MovingSprite{
 
     private boolean dead = false;
+
+    private Sprite sprite;
 
     private TextureRegion playerFrontTexture;
     private TextureRegion playerBackTexture;
@@ -21,12 +22,16 @@ public class Player extends MovingSprite{
     private TextureRegion playerRightTexture;
 
     public Player(Game game, float x, float y, float speed) {
-        super("player_front", game, x, y, speed);
+        super(game, x, y, speed);
 
         playerFrontTexture = ImageCache.getTexture("player_front");
         playerBackTexture = ImageCache.getTexture("player_back");
         playerLeftTexture = ImageCache.getTexture("player_left");
         playerRightTexture = ImageCache.getTexture("player_right");
+
+        sprite = new Sprite(playerFrontTexture);
+        width = sprite.getRegionWidth();
+        height = sprite.getRegionHeight();
     }
 
     public void shoot() {
@@ -54,23 +59,28 @@ public class Player extends MovingSprite{
 
 //            TODO: Zrobic jako osobna klase do animacji p.s. poprawic texture player_left oraz player_right
             if(rotation < 135 && rotation > 45) {
-                setTexture(playerBackTexture);
+                sprite.setRegion(playerBackTexture);
             } else if (rotation > -135 && rotation < -45) {
-                setTexture(playerFrontTexture);
+                sprite.setRegion(playerFrontTexture);
             } else if (rotation < -135 || rotation > 135) {
-                setTexture(playerLeftTexture);
+                sprite.setRegion(playerLeftTexture);
             } else if (rotation < 45 && rotation > -45) {
-                setTexture(playerRightTexture);
+                sprite.setRegion(playerRightTexture);
             }
+
+            sprite.setX(x);
+            sprite.setY(y);
 
             setRotation(game.camera.getPositionMouseWithCamera().x, game.camera.getPositionMouseWithCamera().y);
             setVelocityMove(rotation);
+            createBody(sprite);
+
+            input();
         }
     }
 
     @Override
     public void draw() {
-        super.draw();
-        if(active) input();
+        sprite.draw(game.spriteBatch);
     }
 }

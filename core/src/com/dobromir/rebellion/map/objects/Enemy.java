@@ -48,9 +48,12 @@ public class Enemy extends MovingSprite {
             sprite.setX(x);
             sprite.setY(y);
 
+            setRotation(game.screen.elements.get("Player").getX(), game.screen.elements.get("Player").getY());
             setVelocityMove(rotation);
 
             createBody(sprite);
+
+            input();
 
 //            double d = Math.sqrt(Math.pow(objects.get("Player").getX() - getX(), 2) + Math.pow(objects.get("Player").getY() - getY(), 2));
 //            if(d < 100) {
@@ -71,5 +74,4 @@ public class Enemy extends MovingSprite {
     public void draw() {
         sprite.draw(game.spriteBatch);
     }
-
 }

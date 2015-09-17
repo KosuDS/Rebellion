@@ -34,7 +34,8 @@ public class GameSprite{
 		visible = true;
 		texture = null;
 
-        createBody(new float[]{x, y, x + width, y, x + width, y + height, x, y + height, x, y});
+        body = new Polygon();
+        updateBody();
 	}
 	
 	public GameSprite (String textureName, Game game, float x, float y) {
@@ -44,21 +45,10 @@ public class GameSprite{
 		this.x = x;
 		this.y = y;
 		setTexture(textureName);
+
+        body = new Polygon();
+        createBody(texture);
 	}
-
-    public void createBody(Sprite sprite) {
-        float[] spriteVertices = sprite.getVertices();
-
-        createBody(new float[]{spriteVertices[Batch.X1], spriteVertices[Batch.Y1], spriteVertices[Batch.X2], spriteVertices[Batch.Y2], spriteVertices[Batch.X3], spriteVertices[Batch.Y3], spriteVertices[Batch.X4], spriteVertices[Batch.Y4]});
-    }
-
-    public void createBody(TextureRegion texture) {
-        createBody(new float[] {x, y, x + texture.getRegionWidth(), y, x + texture.getRegionWidth(), y + texture.getRegionHeight(), x, y + texture.getRegionHeight()});
-    }
-
-    public void createBody(float[] vertices) {
-        body = new Polygon(vertices);
-    }
 	
 	public boolean isVisible() {
 		return visible;
@@ -77,21 +67,7 @@ public class GameSprite{
 
 		width = this.texture.getRegionWidth();
 		height = this.texture.getRegionHeight();
-
-        createBody(texture);
 	}
-
-    public boolean isCollisionWith(Polygon polygon) {
-        return Intersector.overlapConvexPolygons(polygon, body);
-    }
-
-    public Polygon getBody() {
-        return body;
-    }
-
-    public void setBody(Polygon body) {
-        this.body = body;
-    }
 	
 	public float right () {
 		return x + width;
@@ -120,6 +96,36 @@ public class GameSprite{
 	public void reset () {
 		x = 0;
 		y = 0;
+	}
+
+	public void createBody(Sprite sprite) {
+		float[] spriteVertices = sprite.getVertices();
+
+		createBody(new float[]{spriteVertices[Batch.X1], spriteVertices[Batch.Y1], spriteVertices[Batch.X2], spriteVertices[Batch.Y2], spriteVertices[Batch.X3], spriteVertices[Batch.Y3], spriteVertices[Batch.X4], spriteVertices[Batch.Y4]});
+	}
+
+	public void createBody(TextureRegion texture) {
+		createBody(new float[]{x, y, x + texture.getRegionWidth(), y, x + texture.getRegionWidth(), y + texture.getRegionHeight(), x, y + texture.getRegionHeight()});
+	}
+
+	public void createBody(float[] vertices) {
+		body = new Polygon(vertices);
+	}
+
+	public void updateBody() {
+		createBody(new float[]{x, y, x + width, y, x + width, y + height, x, y + height, x, y});
+	}
+
+	public boolean isCollisionWith(Polygon polygon) {
+		return Intersector.overlapConvexPolygons(polygon, body);
+	}
+
+	public Polygon getBody() {
+		return body;
+	}
+
+	public void setBody(Polygon body) {
+		this.body = body;
 	}
 	
 	public void draw () {

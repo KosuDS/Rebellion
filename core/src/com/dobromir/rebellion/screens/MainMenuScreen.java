@@ -8,7 +8,6 @@ import com.dobromir.rebellion.ui.ButtonBox;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.dobromir.rebellion.Game;
 
@@ -28,7 +27,7 @@ public class MainMenuScreen extends Screen{
     	game.camera.setToOrtho(false, game.screenWidth, game.screenHeight);
 		game.camera.update();
 		
-        if (elements.size() == 0) {  
+        if (elements.size() == 0) {
     		buttonBox = new ButtonBox(game, 0, 0, Skins.getSkin("Default"));
             buttonBox.addButton("Start", "Start", 30f, 320f, 200f, 30f);
             buttonBox.addButton("Options", "Opcje", 30f, 280f, 200f, 30f);
@@ -41,10 +40,17 @@ public class MainMenuScreen extends Screen{
                     game.setScreen("MapMenuScreen");
                 }
             });
+
+            buttonBox.getButtons().get("Exit").addListener(new ClickListener() {
+                @Override
+                public void touchUp(InputEvent e, float x, float y, int point, int button) {
+                    game.setScreen("ExitScreen");
+                }
+            });
  
             GameSprite logo = new GameSprite ("logo", game, game.screenWidth * 0.15f,  game.screenHeight * 0.7f);
             logo.width = game.screenWidth;
-            elements.add(logo); 
+            elements.put("logo", logo);
         }  
     }  
   
@@ -59,7 +65,7 @@ public class MainMenuScreen extends Screen{
         game.spriteBatch.setProjectionMatrix(game.camera.combined); 
         game.spriteBatch.enableBlending(); 
         game.spriteBatch.begin(); 
-		for (GameSprite element : elements) {
+		for (GameSprite element : elements.values()) {
 			if(!element.visible) continue;
 
 			if(element.texture == null) {

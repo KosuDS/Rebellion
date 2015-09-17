@@ -2,11 +2,8 @@ package com.dobromir.rebellion.sprites;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Polygon;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
-
-import java.util.HashMap;
 
 public class MovingSprite extends GameSprite {
 
@@ -16,8 +13,6 @@ public class MovingSprite extends GameSprite {
     private float dtSpeed;
     private float[] directionMove = new float[] {0, 0};
     private float[] velocityMove = new float[] {0, 0};
-
-    public Polygon cellPolygon;
 
     public MovingSprite(Game game, float x, float y, float speed) {
         super(game, x, y);
