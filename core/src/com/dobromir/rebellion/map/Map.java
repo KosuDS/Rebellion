@@ -21,7 +21,6 @@ public class Map {
 
     private String cameraClumping;
     private boolean drawShape;
-    private boolean drawObjects;
     private boolean drawTiles;
     private boolean active;
 
@@ -40,22 +39,8 @@ public class Map {
 
         cameraClumping = "Player";
         drawShape = true;
-        drawObjects = true;
         drawTiles = true;
         active = true;
-    }
-
-    public void checkCollision() {
-        for (GameSprite object : game.screen.elements.values()) {
-            for (GameSprite object2 : game.screen.elements.values()) {
-                if(!object.equals(object2) && object.isCollisionWith(object2.getBody())) {
-                    Console.puts("LOLOLOLssssssssssssssssssssssssssssssssssssssssssss");
-//                    object.setCollision(true);
-                } else {
-//                    object.setCollision(false);
-                }
-            }
-        }
     }
 
     public void update(float dt) {
@@ -68,8 +53,6 @@ public class Map {
             for(GameSprite object : game.screen.elements.values()) {
                 if(object.active) object.update(dt);
             }
-
-            checkCollision();
         }
     }
 

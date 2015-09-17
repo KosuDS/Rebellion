@@ -4,6 +4,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
+import com.dobromir.rebellion.utils.io.Console;
+
+import java.util.Map;
 
 public class MovingSprite extends GameSprite {
 
@@ -93,6 +96,19 @@ public class MovingSprite extends GameSprite {
 
         if(collisionY) {
             velocityMove[1] = 0;
+        }
+
+        //////////////////////////TESTY///////////////////////////////
+//TODO: Trzeba verticle przenies o vektor ktor jest na gorze a nastepnie sprawdzic colizje... proscizna.
+        for (Map.Entry<String, GameSprite> elements: game.screen.elements.entrySet()) {
+            String key = elements.getKey();
+            GameSprite value = elements.getValue();
+
+            if(!value.equals(this)) {
+                if(isCollisionWith(value.getBody())) {
+                    Console.puts(key + " : A HIT!!!");
+                }
+            }
         }
     }
 
