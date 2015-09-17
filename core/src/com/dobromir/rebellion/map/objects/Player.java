@@ -6,8 +6,10 @@ import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.ImageCache;
 import com.dobromir.rebellion.data.Sounds;
+import com.dobromir.rebellion.sprites.GameSprite;
 import com.dobromir.rebellion.sprites.MovingSprite;
-import com.dobromir.rebellion.utils.io.Console;
+
+import java.util.HashMap;
 
 public class Player extends MovingSprite{
 
@@ -62,7 +64,7 @@ public class Player extends MovingSprite{
             }
 
             setRotation(game.camera.getPositionMouseWithCamera().x, game.camera.getPositionMouseWithCamera().y);
-            setDirectionMove(rotation);
+            setVelocityMove(rotation);
         }
     }
 

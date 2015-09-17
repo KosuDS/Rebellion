@@ -5,7 +5,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
 import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.Maps;
-import com.dobromir.rebellion.utils.io.Console;
+
+import java.util.HashMap;
 
 public class MovingSprite extends GameSprite {
 
@@ -13,8 +14,8 @@ public class MovingSprite extends GameSprite {
 
     private float speed;
     private float dtSpeed;
-    private float[] velocityMove = new float[] {0, 0};
     private float[] directionMove = new float[] {0, 0};
+    private float[] velocityMove = new float[] {0, 0};
 
     public Polygon cellPolygon;
 
@@ -39,64 +40,64 @@ public class MovingSprite extends GameSprite {
         this.dtSpeed = speed * dt;
     }
 
-    public void setVelocity() {
-        velocityMove[0] = directionMove[0] * dtSpeed;
-        velocityMove[1] = directionMove[1] * dtSpeed;
+    public void setDirection() {
+        directionMove[0] = velocityMove[0] * dtSpeed;
+        directionMove[1] = velocityMove[1] * dtSpeed;
     }
 
     public void moveForward() {
-        setVelocity();
+        setDirection();
         checkCollision();
 
-        x += directionMove[0] * dtSpeed;
-        y += directionMove[1] * dtSpeed;
+        x += velocityMove[0] * dtSpeed;
+        y += velocityMove[1] * dtSpeed;
     }
 
     public void moveBack() {
-        setVelocity();
+        setDirection();
         checkCollision();
 
-        x -= directionMove[0] * dtSpeed;
-        y -= directionMove[1] * dtSpeed;
+        x -= velocityMove[0] * dtSpeed;
+        y -= velocityMove[1] * dtSpeed;
     }
 
     public void moveLeft() {
-        setVelocity();
+        setDirection();
         checkCollision();
 
-        x -= directionMove[1] * dtSpeed;
-        y += directionMove[0] * dtSpeed;
+        x -= velocityMove[1] * dtSpeed;
+        y += velocityMove[0] * dtSpeed;
     }
 
     public void moveRight() {
-        setVelocity();
+        setDirection();
         checkCollision();
 
-        x += directionMove[1] * dtSpeed;
-        y -= directionMove[0] * dtSpeed;
+        x += velocityMove[1] * dtSpeed;
+        y -= velocityMove[0] * dtSpeed;
     }
 
     public void checkCollision() {
         boolean collisionX = false, collisionY = false;
 
-        if(velocityMove[0] < 0){
+        if(directionMove[0] < 0){
             collisionX = collidesLeft();
-        }else if(velocityMove[0] > 0){
+        }else if(directionMove[0] > 0){
             collisionX = collidesRight();
         }
 
         if(collisionX) {
-            directionMove[0] = 0;
+            velocityMove[0] = 0;
         }
 
-        if(velocityMove[1] < 0){
+        if(directionMove[1] < 0){
             collisionY = collidesBottom();
-        }else if(velocityMove[1] > 0){
+        }else if(directionMove[1] > 0){
             collisionY = collidesTop();
         }
 
         if(collisionY) {
-            directionMove[1] = 0;
+            velocityMove[1] = 0;
         }
     }
 
@@ -107,21 +108,21 @@ public class MovingSprite extends GameSprite {
 
     public boolean collidesRight() {
         for(float step = 0; step < height; step += collisionLayer.getTileHeight() / 2)
-            if(isCellBlocked(x + width + velocityMove[0], y + step + velocityMove[1]))
+            if(isCellBlocked(x + width + directionMove[0], y + step + directionMove[1]))
                 return true;
         return false;
     }
 
     public boolean collidesLeft() {
         for(float step = 0; step < height; step += collisionLayer.getTileHeight() / 2)
-            if(isCellBlocked(x + velocityMove[0], y + step + velocityMove[1]))
+            if(isCellBlocked(x + directionMove[0], y + step + directionMove[1]))
                 return true;
         return false;
     }
 
     public boolean collidesTop() {
         for(float step = 0; step < width; step += collisionLayer.getTileWidth() / 2)
-            if(isCellBlocked(x + step + velocityMove[0], y + height + velocityMove[1]))
+            if(isCellBlocked(x + step + directionMove[0], y + height + directionMove[1]))
                 return true;
         return false;
 
@@ -129,7 +130,7 @@ public class MovingSprite extends GameSprite {
 
     public boolean collidesBottom() {
         for(float step = 0; step < width; step += collisionLayer.getTileWidth() / 2)
-            if(isCellBlocked(x + step + velocityMove[0], y + velocityMove[1]))
+            if(isCellBlocked(x + step + directionMove[0], y + directionMove[1]))
                 return true;
         return false;
     }
@@ -138,20 +139,20 @@ public class MovingSprite extends GameSprite {
         rotation = MathUtils.radiansToDegrees * MathUtils.atan2(dirY - y , dirX - x);
     }
 
-    public void setDirectionMove(float rotation) {
+    public void setVelocityMove(float rotation) {
         setDirectionMove((float) (Math.cos(rotation * MathUtils.degreesToRadians)), (float) (Math.sin(rotation * MathUtils.degreesToRadians)));
     }
 
     public void setDirectionMove(float x, float y) {
-        directionMove = new float[] {x, y};
+        velocityMove = new float[] {x, y};
     }
 
-    public float[] getDirectionMove() {
-        return directionMove;
+    public float[] getVelocityMove() {
+        return velocityMove;
     }
 
     public void setDirectionMove(float[] directionMove) {
-        this.directionMove = directionMove;
+        this.velocityMove = directionMove;
     }
 
     public float getSpeed() {
