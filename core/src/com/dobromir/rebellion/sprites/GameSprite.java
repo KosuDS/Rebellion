@@ -7,8 +7,9 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.dobromir.rebellion.Game;
-import com.badlogic.gdx.graphics.g2d.Batch.*;
 import com.dobromir.rebellion.data.ImageCache;
+
+import java.util.HashMap;
 
 public class GameSprite{
 
@@ -112,7 +113,9 @@ public class GameSprite{
 		return new Rectangle(x , y, width, height);
 	}
 	
-	public void update (float dt) {}
+	public void update (float dt) {
+
+    }
 
 	public void reset () {
 		x = 0;

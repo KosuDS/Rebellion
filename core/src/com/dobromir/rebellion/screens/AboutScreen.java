@@ -18,5 +18,4 @@ public class AboutScreen extends Screen{
 	public void update(float dt) {
 
 	}
-
 }

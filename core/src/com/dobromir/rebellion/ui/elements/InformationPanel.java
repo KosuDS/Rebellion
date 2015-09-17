@@ -9,6 +9,8 @@ import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.Fonts;
 import com.dobromir.rebellion.sprites.GameSprite;
 
+import java.util.HashMap;
+
 public class InformationPanel extends GameSprite{
 	
 	private float playerPositionX, playerPositionY;

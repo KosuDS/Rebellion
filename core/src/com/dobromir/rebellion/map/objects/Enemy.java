@@ -4,19 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.dobromir.rebellion.Game;
-import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.ImageCache;
-import com.dobromir.rebellion.map.Map;
 import com.dobromir.rebellion.sprites.GameSprite;
 import com.dobromir.rebellion.sprites.MovingSprite;
+import com.dobromir.rebellion.utils.io.Console;
 
-import java.util.Objects;
+import java.util.HashMap;
 
 public class Enemy extends MovingSprite {
 
     private Sprite sprite;
-
-    private int distance;
+    private float search = 100;
 
     public Enemy(Game game, float x, float y, float speed) {
         super(game, x, y, speed);
@@ -25,12 +23,13 @@ public class Enemy extends MovingSprite {
 //TODO: A moze by tak, jeszcze jeden konstruktor z Sprite zamiast zwyklym texture???!!!
         width = sprite.getRegionWidth();
         height = sprite.getRegionHeight();
+
+        setRotation(90);
     }
 
     public void input() {
         if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
             moveForward();
-            System.out.println();
         } if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             moveBack();
         } if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
@@ -49,23 +48,28 @@ public class Enemy extends MovingSprite {
             sprite.setX(x);
             sprite.setY(y);
 
-            setRotation(game.camera.getPositionMouseWithCamera().x, game.camera.getPositionMouseWithCamera().y);
-            setDirectionMove(rotation);
+            setVelocityMove(rotation);
 
             createBody(sprite);
 
-            distance = Math.sqrt(Math.pow(Objects.get("Player").getX() - getX(), 2) + Math.pow(Objects.get("Player").getX() - getY(), 2)); // prawie dobrze
-
-            if (distance > 100){
-                moveForward();
-            }
-
+//            double d = Math.sqrt(Math.pow(objects.get("Player").getX() - getX(), 2) + Math.pow(objects.get("Player").getY() - getY(), 2));
+//            if(d < 100) {
+//                setRotation(objects.get("Player").getX(), objects.get("Player").getY());
+//                moveForward();
+//                search = 100;
+//            } else {
+//                Console.puts(String.valueOf(search));
+//                if( search > 0) {
+//                    search -= 1;
+//                    moveBack();
+//                }
+//            }
         }
     }
 
     @Override
     public void draw() {
         sprite.draw(game.spriteBatch);
-        if(active) input();
     }
+
 }
