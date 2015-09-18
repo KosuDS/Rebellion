@@ -45,25 +45,23 @@ public class GameScreen extends Screen{
 		map.draw();
 
         game.spriteBatch.enableBlending();
-        game.spriteBatch.begin();
+		game.spriteBatch.begin();
+		for (GameSprite element : elements.values()) {
+			if(!element.visible) continue;
 
-        for (GameSprite element : elements) {
-            if(!element.visible) continue;
-
-            if(element.texture == null) {
-                element.draw();
-            } else {
-                game.spriteBatch.draw(element.texture, element.x, element.y);
-            }
-        }
-
-        game.spriteBatch.end();
+			if(element.texture == null) {
+				element.draw();
+			} else {
+				game.spriteBatch.draw(element.texture, element.x, element.y);
+			}
+		}
+		game.spriteBatch.end();
 		///////////////////////////// RENDERER /////////////////////////////
 
 
 		///////////////////////////// UPDATE /////////////////////////////
 		informationPanel.update(dt);
-		informationPanel.setInformation(map.getObjects().get("Player").getX(), map.getObjects().get("Player").getX(), game.camera.position.x, game.camera.position.y, map.getCameraClumping(), map.isDrawShape(), game.gameData.mapName);
+		informationPanel.setInformation(game.screen.elements.get("Player").getX(), game.screen.elements.get("Player").getX(), game.camera.position.x, game.camera.position.y, map.getCameraClumping(), map.isDrawShape(), game.gameData.mapName);
 
 		map.update(dt);
 

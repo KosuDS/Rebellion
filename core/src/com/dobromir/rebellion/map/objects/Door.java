@@ -7,8 +7,6 @@ import com.dobromir.rebellion.Game;
 import com.dobromir.rebellion.data.ImageCache;
 import com.dobromir.rebellion.sprites.GameSprite;
 
-import java.util.HashMap;
-
 public class Door extends GameSprite {
 
     private float count;
@@ -37,7 +35,7 @@ public class Door extends GameSprite {
 
         speed = 20;
 
-        game.screen.elements.add(this);
+        game.screen.elements.put("Door", this);
     }
 
     public Rectangle getRectangle() {

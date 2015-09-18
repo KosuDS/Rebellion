@@ -5,11 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.dobromir.rebellion.Game;
 
-import com.dobromir.rebellion.constantly.KeysConfig;
 import com.dobromir.rebellion.data.Fonts;
 import com.dobromir.rebellion.sprites.GameSprite;
-
-import java.util.HashMap;
 
 public class InformationPanel extends GameSprite{
 	
@@ -34,7 +31,7 @@ public class InformationPanel extends GameSprite{
 		font = Fonts.getFont("default");
 		font.setColor(Color.WHITE);
 		
-		game.screen.elements.add(this);
+		game.screen.elements.put("InformationPanel", this);
 	}
 	
 	public void setInformation(float playerPositionX, float playerPositionY, float cameraPositionX, float cameraPositionY, String cameraClumping, boolean shapeRenderer, String mapName) {

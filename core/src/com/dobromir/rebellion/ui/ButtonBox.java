@@ -1,15 +1,12 @@
 package com.dobromir.rebellion.ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.dobromir.rebellion.Game;
 
 import com.dobromir.rebellion.sprites.GameSprite;
@@ -29,7 +26,7 @@ public class ButtonBox extends GameSprite{
 		buttons = new HashMap<>();
 		this.skin = skin;
 		
-		game.screen.elements.add(this);
+		game.screen.elements.put("ButtonBox", this);
 	}
 	
 	public void addButton(String name, String text, float x, float y, float width, float height) {

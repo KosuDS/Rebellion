@@ -8,7 +8,6 @@ import com.dobromir.rebellion.ui.ButtonBox;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.dobromir.rebellion.Game;
 
 public class MapMenuScreen extends Screen{
@@ -25,7 +24,7 @@ public class MapMenuScreen extends Screen{
 		game.camera.setToOrtho(false, game.screenWidth, game.screenHeight);
 		game.camera.update();
 		
-        if (elements.size() == 0) {  
+        if (elements.size() == 0) {
         	buttonBox = new ButtonBox(game, 0, 0, Skins.getSkin("Default"));
             //Skin skin = new Skin(Gdx.files.internal("data/ui/uiskin.json"));
             buttonBox.addButton("MAP_0", "MAP 0", 30f, 320f, 200f, 30f);
@@ -60,7 +59,7 @@ public class MapMenuScreen extends Screen{
         game.spriteBatch.setProjectionMatrix(game.camera.combined); 
         game.spriteBatch.enableBlending(); 
         game.spriteBatch.begin(); 
-		for (GameSprite element : elements) {
+		for (GameSprite element : elements.values()) {
 			if(!element.visible) continue;
 
 			if(element.texture == null) {

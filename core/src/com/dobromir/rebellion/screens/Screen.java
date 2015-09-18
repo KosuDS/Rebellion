@@ -1,20 +1,17 @@
 package com.dobromir.rebellion.screens;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.HashMap;
 import com.dobromir.rebellion.sprites.GameSprite;
-
 import com.dobromir.rebellion.Game;
 
 public abstract class Screen implements com.badlogic.gdx.Screen {  
 	  
-    public List<GameSprite> elements;  
+    public HashMap<String, GameSprite> elements;
     protected Game game;  
       
     public Screen (Game game) {  
         this.game = game;  
-        elements = new ArrayList<GameSprite>();  
+        elements = new HashMap<>();
     }  
       
     public void pause () {};  

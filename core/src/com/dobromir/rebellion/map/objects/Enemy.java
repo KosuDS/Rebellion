@@ -48,21 +48,25 @@ public class Enemy extends MovingSprite {
             sprite.setX(x);
             sprite.setY(y);
 
+            setRotation(game.screen.elements.get("Player").getX(), game.screen.elements.get("Player").getY());
             setVelocityMove(rotation);
 
             createBody(sprite);
-            //TODO o co chodz? przecierz to jest to jak ty zrobi³eœ i dzia³a³o
-            double d = Math.sqrt(Math.pow(objects.get("Player").getX() - getX(), 2) + Math.pow(objects.get("Player").getY() - getY(), 2));
-            if(d < 100) {
-                setRotation(objects.get("Player").getX(), objects.get("Player").getY());
-                moveForward();
-                search = 100;
-            } else {
-                Console.puts(String.valueOf(search));
-                if( search > 0) {
-                    search -= 1;
-                    moveBack();
-                }
+
+            input();
+
+//            double d = Math.sqrt(Math.pow(objects.get("Player").getX() - getX(), 2) + Math.pow(objects.get("Player").getY() - getY(), 2));
+//            if(d < 100) {
+//                setRotation(objects.get("Player").getX(), objects.get("Player").getY());
+//                moveForward();
+//                search = 100;
+//            } else {
+//                Console.puts(String.valueOf(search));
+//                if( search > 0) {
+//                    search -= 1;
+//                    moveBack();
+//                }
+//            }
         }
     }
 
@@ -70,5 +74,4 @@ public class Enemy extends MovingSprite {
     public void draw() {
         sprite.draw(game.spriteBatch);
     }
-
 }
