@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class Enemy extends MovingSprite {
 
     private Sprite sprite;
+    private double distance;
     private float search = 100;
 
     public Enemy(Game game, float x, float y, float speed) {
@@ -55,13 +56,13 @@ public class Enemy extends MovingSprite {
 
             input();
 
-//            double d = Math.sqrt(Math.pow(objects.get("Player").getX() - getX(), 2) + Math.pow(objects.get("Player").getY() - getY(), 2));
-//            if(d < 100) {
-//                setRotation(objects.get("Player").getX(), objects.get("Player").getY());
-//                moveForward();
-//                search = 100;
-//            } else {
-//                Console.puts(String.valueOf(search));
+//            double distance = Math.sqrt(Math.pow(objects.get("Player").getX() - getX(), 2) + Math.pow(objects.get("Player").getY() - getY(), 2));
+//            if(distance < 500) {
+//               setRotation(objects.get("Player").getX(), objects.get("Player").getY());
+//               moveForward();
+//                search = 500;
+//            }
+//            else {
 //                if( search > 0) {
 //                    search -= 1;
 //                    moveBack();
@@ -70,6 +71,7 @@ public class Enemy extends MovingSprite {
         }
     }
 
+    // Console.puts(String.valueOf(search));
     @Override
     public void draw() {
         sprite.draw(game.spriteBatch);
